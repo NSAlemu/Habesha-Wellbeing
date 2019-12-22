@@ -20,7 +20,7 @@ mongoose.connect(uri, {
     useFindAndModify: false
   })
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+  .catch(err => console.log("errpr at posts\n"+err));
 
 
 const postSchema = new mongoose.Schema({
@@ -28,6 +28,7 @@ const postSchema = new mongoose.Schema({
   title: String,
   author: String,
   post: String,
+  showAuthor: String,
   createdAt: Date
 });
 const Post = mongoose.model("Post", postSchema);
@@ -51,7 +52,7 @@ router.get('/:postID', (req, res) => {
       res.send(err.message);
     }
     else{
-      res.send({"id":req.params.postID,"title":postit.title,"author":postit.author,"post":postit.post,"createdAt":postit.createdAt});
+      res.send({"id":req.params.postID,"title":postit.title,"author":postit.author,"showAuthor":postit.showAuthor,"post":postit.post,"createdAt":postit.createdAt});
     }
 
   });
@@ -60,7 +61,7 @@ router.post('/', (req, res) => {
   const body = req.body;
   savePost(body);
 
-  res.send(body);
+  res.send({"saved":"true"});
 });
 
 function savePost(Obj) {
@@ -69,6 +70,7 @@ function savePost(Obj) {
     title: Obj.title,
     author: Obj.author,
     post: Obj.post,
+    showAuthor: Obj.showAuthor,
     createdAt: new Date()
   });
   postItem.save();

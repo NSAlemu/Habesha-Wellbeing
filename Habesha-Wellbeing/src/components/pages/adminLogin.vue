@@ -1,11 +1,9 @@
 <template>
 <div>
   <navbar />
-  <div style="margin-top:100px">
 
-  </div>
 
-  <b-container>
+  <b-container class="mainBody">
     <b-row>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group id="input-group-1" label="Username:" label-for="input-1">

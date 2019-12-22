@@ -16,9 +16,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');4
 body{
   font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6rem;
 }
 h1{
   font-size: 32px;
@@ -42,21 +43,24 @@ h4{
 }
 h5{
   font-size: 14px;
-  font-weight: bold;
   line-height: 1.1em;
 }
 h6{
   font-size: 10px;
-  font-weight: bold;
   line-height: 1.5em;
 }
 p{
-  font-size: 1rem;
-  line-height: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.6rem;
 }
 .main-body {
   padding-top: 5%;
 }
-
-.h1 {}
+.mainBody{
+  position: relative;
+ min-height: 100vh;
+}
+.Footer-Space{
+  padding-bottom: 300px
+}
 </style>

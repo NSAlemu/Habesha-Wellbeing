@@ -15,11 +15,20 @@ const sidenav = require('./routes/api/sidenav');
 app.use("/api/posts", posts);
 app.use("/api/sidenav", sidenav);
 
+if(process.env.NODE_ENV==='production'){
+  app/use(express.static(__dirname + "/public"));
+  app.get(/.*/, (req, res) => {
+    //const posts = await loadPosts();
+    res.sendFile(__dirname+'/public/index.html');
+  });
+}
+
+
 app.get("/", async (req, res) => {
   //const posts = await loadPosts();
   res.send("");
 });
-
-app.listen(3000, function() {
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
   console.log("Server started on port 3000");
 });

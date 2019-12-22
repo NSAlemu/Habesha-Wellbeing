@@ -16,7 +16,7 @@
           <b-button class="acc-subheader noborder" block href="#" squared variant="info">{{ subHeader[0] }}</b-button>
         </div>
 
-
+        <p>{{posts}}</p>
       </b-collapse>
       <hr v-if="(i+1)!== posts.length">
     </b-card>
@@ -29,7 +29,7 @@
 
 <script>
 import axios from 'axios';
-
+import SidenavService from '../../SidenavService'
 export default {
   name: 'HelloWorld',
   data() {
@@ -42,10 +42,18 @@ export default {
       text: ''
     }
   },
+  async created(){
+    try{
+      this.posts = await SidenavService.getPost();
+    }
+    catch(err){
+      this.error = err.message;
+    }
+  },
   mounted () {
-    axios
-      .get('http://localhost:3000/api/sidenav')
-      .then(response => (this.posts = response.data))
+    // axios
+    //   .get('api/sidenav')
+    //   .then(response => (this.posts = response.data))
   },
   methods: {
     expand: function(e, i) {

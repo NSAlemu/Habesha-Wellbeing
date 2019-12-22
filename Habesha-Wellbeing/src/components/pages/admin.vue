@@ -1,9 +1,7 @@
 <template>
 <div id="app" style="margin-top:100px; width:100%">
   <NavBar />
-  <div style="margin-top:50px">
-  </div>
-  <b-container>
+  <b-container class="mainBody">
     <b-row>
       <b-col cols="8">
         <h2>Post</h2>
@@ -11,7 +9,7 @@
     </b-row>
     <hr>
     <b-col cols="12" lg="8">
-      <b-form v-if="show">
+      <b-form @submit="onSubmit">
 
         <b-form-group id="input-group-1" label="Title" label-for="input-1">
           <b-form-input id="input-2" v-model="postBody.title" required placeholder="Header of Post to be displayed"></b-form-input>
@@ -28,7 +26,7 @@
         </b-form-group>
 
 
-        <b-button type="submit"  v-on:click="showMsgBoxOne" name="save" variant="primary">Submit</b-button>
+        <b-button type="submit" name="save" variant="primary">Submit</b-button>
 
       </b-form>
     </b-col>
@@ -36,7 +34,7 @@
     <b-row>
       <b-col>
         <hr>
-        <h3>Preview</h3>
+        <h2>Preview</h2>
         <hr>
       </b-col>
     </b-row>
@@ -52,6 +50,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
 import mainBody from '../parts/main'
 import NavBar from '../parts/navbar'
+import PostService from '../../PostService'
 
 
 export default {
@@ -62,22 +61,7 @@ export default {
   },
   data() {
     return {
-      form: {
-        email: '',
-        name: '',
-        food: null,
-        checked: []
-      },
-      foods: [{
-        text: 'Select One',
-        value: null
-      }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-      show: true,
-      email: '',
-      name: '',
-      food: null,
-      checked: [],
-      postBody:{
+      postBody: {
         title: '',
         author: '',
         post: "<p>Write the post content here. </br> </br></p>",
@@ -85,34 +69,58 @@ export default {
       },
       editor: ClassicEditor,
       newData: '',
-      boxOne:'',
+      boxOne: '',
       editorConfig: {
         // The configuration of the editor.
       }
     }
   },
   methods: {
+    onSubmit(evt) {
+      evt.preventDefault()
+      this.boxOne = ''
+      this.$bvModal.msgBoxConfirm('Are you sure?')
+        .then(value => {
+          if (value) {
+            this.postNow();
+          }
+        })
+        .catch(err => {
+          // An error occurred
+        })
+    },
     showMsgBoxOne() {
-       this.boxOne = ''
-       this.$bvModal.msgBoxConfirm('Are you sure?')
-         .then(value => {
-           if(value){
-             this.postNow();
-           }
-         })
-         .catch(err => {
-           // An error occurred
-         })
-     },
-    postNow: function() {
+
+    },
+    postNow: async function() {
       console.log(this.editorData);
-      window.open("https://www.google.com", "_blank");
-      // axios.post('http://localhost:3000/api/posts', {
-      //   title: this.postBody.title,
-      //   author: this.postBody.author,
-      //   post: this.postBody.post
-      // });
+      if (this.postBody.author === '') {
+        this.postBody.showAuthor = "not_accepted"
+      }
+      var newPost = {
+        title: this.postBody.title,
+        author: this.postBody.author,
+        showAuthor: this.postBody.showAuthor,
+        post: this.postBody.post
+      }
+      var saved = ""
+      try {
+        saved = await PostService.savePost(newPost);
+        if (saved === 'true') {
+          this.$bvModal.msgBoxOk('Post saved')
+        } else {
+          this.$bvModal.msgBoxOk('There was an error saving post', {
+            okVariant: 'danger',
+          })
+        }
+      } catch (err) {
+        console.log(err);
+        this.$bvModal.msgBoxOk('There was an error saving post', {
+          okVariant: 'danger',
+        })
+      }
     }
+
   }
 }
 </script>

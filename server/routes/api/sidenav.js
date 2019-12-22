@@ -21,7 +21,7 @@ mongoose.connect(uri, {
     useFindAndModify: false
   })
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+  .catch(err => console.log("errpr at sidenav\n"+err));
 
 
 const sidenavSchema = new mongoose.Schema({

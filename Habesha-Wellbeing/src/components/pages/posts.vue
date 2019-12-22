@@ -1,17 +1,18 @@
 <template>
 <div id="app">
   <NavBar />
-  <div style="margin-top:75px">
-
-  </div>
-  <b-container>
+<div class="mainBody">
+  <b-container class="Footer-Space">
     <b-row>
       <!-- <sideNav /> -->
-
       <mainBody v-bind:postBody="postBody" />
     </b-row>
   </b-container>
   <Footer />
+</div>
+
+
+
 
 </div>
 </template>
@@ -22,6 +23,8 @@ import NavBar from '../parts/navbar'
 import sideNav from '../parts/sidenav'
 import mainBody from '../parts/main'
 import Footer from '../parts/footer'
+import PostService from '../../postService'
+
 export default {
   name: 'HelloWorld',
   components: {
@@ -32,14 +35,17 @@ export default {
   },
   data() {
     return {
-      postBody: ''
+      postBody: '',
+      error:''
     }
   },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/posts/' + this.$route.params.PostID)
-      .then(response => (this.postBody = response.data));
-    console.log("post" + this.postBody)
+  async created(){
+    try{
+      this.postBody = await PostService.getPost(this.$route.params.PostID);
+    }
+    catch(err){
+      this.error = err.message;
+    }
   }
 }
 </script>

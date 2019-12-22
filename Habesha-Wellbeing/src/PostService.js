@@ -1,21 +1,51 @@
 import axios from 'axios'
-const url = 'http://localhost:3000/api/posts'
+const url = '/api/Posts/'
 
 class PostService {
   // get Posts
-  static getPosts () {
-    var posts;
-    axios
-      .get('http://localhost:3000/api/posts')
-      .then(response => (this.posts = response.data));
-  }
-
-  // create Post
-  static insertPost(text) {
-    return axios.post(url, {
-      text
+  static getPost(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await axios.get(url + id)
+        const data = res.data
+        console.log('getting data' + JSON.stringify(data))
+        resolve(data)
+      } catch (err) {
+        reject(err)
+      }
     })
   }
+  static getAllPost() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await axios.get(url)
+        const data = res.data
+        resolve(data.map(post => ({
+          ...post,
+          createdAt: new Date(post.createdAt)
+        })))
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+
+  static savePost(newPost) {
+    var res = "";
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await axios.post(url, newPost)
+        const data = res.data.saved
+        resolve(data)
+
+      } catch (err) {
+        reject(err)
+      }
+    })
+    return res
+  }
 }
+
 
 export default PostService

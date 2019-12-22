@@ -1,17 +1,17 @@
 <template>
-<div id="app">
+<div id="app" class="">
   <homeHeader />
-  <div style="margin-top:50px">
-
+  <div class="mainBody">
+    <b-container class="Footer-Space">
+      <b-row>
+        <sideNav />
+        <mainBody />
+      </b-row>
+    </b-container>
+    <Footer />
   </div>
-  <b-container>
-    <b-row>
-      <sideNav />
 
-      <mainBody />
-    </b-row>
-  </b-container>
-  <Footer />
+
 
 </div>
 </template>

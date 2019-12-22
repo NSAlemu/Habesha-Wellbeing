@@ -1,13 +1,10 @@
 <template>
 <div id="app">
   <NavBar />
-  <div style="margin-top:50px">
-
-  </div>
-  <b-container>
+<div class="mainBody">
+  <b-container class="Footer-Space">
     <b-row>
       <sideNav />
-
       <div>
         <ul>
           <li  v-for="post, i in allPosts">
@@ -18,6 +15,8 @@
     </b-row>
   </b-container>
   <Footer />
+</div>
+
 
 </div>
 </template>
@@ -28,6 +27,8 @@ import NavBar from '../parts/navbar'
 import sideNav from '../parts/sidenav'
 import mainBody from '../parts/main'
 import Footer from '../parts/footer'
+import PostService from '../../PostService'
+
 export default {
   name: 'HelloWorld',
   components: {
@@ -41,11 +42,22 @@ export default {
       allPosts: ''
     }
   },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/posts/')
-      .then(response => (this.allPosts = response.data));
+  async created(){
+    try{
+      this.allPosts = await PostService.getAllPost();
+      console.log("log: "+this.allPosts);
+
+    }
+    catch(err){
+      this.error = err.message;
+    }
   }
+  // ,
+  // mounted() {
+  //   axios
+  //     .get('http://localhost:3000/api/posts/')
+  //     .then(response => (this.allPosts = response.data));
+  // }
 }
 </script>
 
