@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const mongoose = require('mongoose');
 const shortid = require('shortid');
-const config = require('config');
+const dotenv = require('dotenv').config();
+
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
-const dbConfig = config.get('DB.dbConfig');
+console.log(process.env.mongokey+"?retryWrites=true&w=majority");
 const uri = process.env.mongokey+"?retryWrites=true&w=majority";
 mongoose.connect(uri, {
     useNewUrlParser: true,

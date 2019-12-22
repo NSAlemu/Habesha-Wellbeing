@@ -3,8 +3,7 @@ const mongodb = require("mongodb");
 const bodyParser = require('body-parser');
 const router = express.Router();
 const mongoose = require('mongoose');
-const config = require('config');
-
+const dotenv = require('dotenv').config();
 
 const app = express();
 
@@ -13,7 +12,6 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
 
-const dbConfig = config.get('DB.dbConfig');
 const uri = process.env.mongokey+"?retryWrites=true&w=majority";
 mongoose.connect(uri, {
     useNewUrlParser: true,
