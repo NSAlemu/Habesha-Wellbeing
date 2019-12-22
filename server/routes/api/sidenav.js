@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 
 const dbConfig = config.get('DB.dbConfig');
-const uri = "mongodb+srv://"+dbConfig.username+":"+dbConfig.password+"@"+dbConfig.cluster+"/"+dbConfig.dbName+"?retryWrites=true&w=majority";
+const uri = process.env.mongokey+"?retryWrites=true&w=majority";
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
