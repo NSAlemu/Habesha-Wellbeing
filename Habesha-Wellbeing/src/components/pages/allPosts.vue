@@ -8,7 +8,7 @@
       <div>
         <ul>
           <li  v-for="post, i in allPosts">
-            <b-link v-bind:href="'/posts/' + post._id">{{post.title}}</b-link>
+            <b-link v-bind:href="'/#/posts/' + post._id">{{post.title}}</b-link>
           </li>
         </ul>
       </div>
