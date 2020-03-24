@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 <div class="homejumbotron fd-bg">
   <b-container>

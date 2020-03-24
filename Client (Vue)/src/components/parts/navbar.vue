@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 <div class="">
   <div style="margin-top:75px">
@@ -6,10 +7,13 @@
     <b-container class="nobg">
       <b-row align-h="between">
         <b-col cols="2">
-          <b-navbar-brand class="ml-auto" href="#">
-            <div class="HWlogo" style=" margin: 0 auto;">
-              <img src="../../assets/logo_representation.svg" class="d-inline-block align-top" alt="Kitten" width="30px">
-              Habesha Wellness
+          <b-navbar-brand class="ml-auto" href="/#/">
+            <div class="HWlogo" style=" margin: 0 auto;" href>
+
+                <img src="../../assets/logo_representation.svg" class="d-inline-block align-top" alt="Kitten" width="30px">
+                Habesha Wellness
+
+
             </div>
 
           </b-navbar-brand>

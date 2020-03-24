@@ -6,8 +6,9 @@ import Router from 'vue-router'
 import Home from '../components/pages/homePage'
 import Posts from '../components/pages/posts'
 import AllPosts from '../components/pages/allPosts'
-import Admin from '../components/pages/admin'
+import AdminCreatePost from '../components/pages/adminCreatePost'
 import AdminLogin from '../components/pages/adminLogin'
+import Admin_Console from '../components/pages/adminConsole'
 
 Vue.use(Router);
 const vueRouter = new Router({
@@ -28,19 +29,25 @@ const vueRouter = new Router({
       path: '/posts/:PostID?',
       name: 'Posts',
       component: Posts,
-      meta: { title: 'Skills - MyApp' }
+      meta: { title: ':PostID?' }
     },
     {
-      path: '/admin',
-      name: 'Admin Edit',
-      component: Admin,
-      meta: { title: 'Admin Edit' }
+      path: '/admin_create_post',
+      name: 'Admin Create Post',
+      component: AdminCreatePost,
+      meta: { title: 'Create Post' }
     },
     {
       path: '/admin_login',
       name: 'Admin Login',
       component: AdminLogin,
       meta: { title: 'Admin Login' }
+    },
+    {
+      path: '/admin_console',
+      name: 'Admin Console',
+      component: Admin_Console,
+      meta: { title: 'Admin Console' }
     }
   ]
 });

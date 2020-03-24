@@ -9,6 +9,7 @@ class PostService {
         const res = await axios.get(url + id)
         const data = res.data
         console.log('getting data' + JSON.stringify(data))
+
         resolve(data)
       } catch (err) {
         reject(err)

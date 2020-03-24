@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 <!-- Top Nav Bar -->
 <!-- Fixed navbar -->

@@ -19,7 +19,7 @@ mongoose.connect(uri, {
     useFindAndModify: false
   })
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log("errpr at sidenav\n"+err));
+  .catch(err => console.log("error at sidenav\n"+err));
 
 
 const sidenavSchema = new mongoose.Schema({
@@ -27,7 +27,7 @@ const sidenavSchema = new mongoose.Schema({
   link: String,
   Subheaders: [[String]]
 });
-const Sidenav = mongoose.model("SideNav", sidenavSchema);
+const Sidenav = mongoose.model("sideNav", sidenavSchema);
 
 
 // Get Posts

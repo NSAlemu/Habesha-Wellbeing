@@ -1,20 +1,25 @@
+/* eslint-disable */
 <template>
-<div id="app">
-  <NavBar />
-<div class="mainBody">
-  <b-container class="Footer-Space">
-    <b-row>
-      <!-- <sideNav /> -->
-      <mainBody v-bind:postBody="postBody" />
-    </b-row>
-  </b-container>
-  <Footer />
-</div>
+  <div id="app">
+
+
+    <div class="mainBody">
+      <b-container class="Footer-Space">
+        <b-row>
+          <NavBar />
+        </b-row>
+        <b-row>
+          <!-- <sideNav /> -->
+          <mainBody v-bind:postBody="postBody" />
+        </b-row>
+      </b-container>
+      <Footer />
+    </div>
 
 
 
 
-</div>
+  </div>
 </template>
 
 <script>
@@ -39,6 +44,9 @@ export default {
       error:''
     }
   },
+  render: function (createElement) {
+    return h("div", ["Text in Parent", h(mainBody)]);
+  },
   async created(){
     try{
       this.postBody = await PostService.getPost(this.$route.params.PostID);
@@ -46,6 +54,19 @@ export default {
     catch(err){
       this.error = err.message;
     }
+    let doc = new DOMParser().parseFromString(this.postBody.post, 'text/html').body;
+
+    doc.querySelectorAll( 'oembed[url]' ).forEach( element => {
+      // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+      // to discover the media.
+      const anchor = document.createElement( 'a' );
+      anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+      anchor.className = 'embedly-card';
+
+      element.appendChild( anchor );
+    } );
+    this.postBody.post = doc.innerHTML;
+    console.log("**************"+doc.innerHTML);
   }
 }
 </script>

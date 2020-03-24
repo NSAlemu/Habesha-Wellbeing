@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 <div id="app" style="margin-top:100px; width:100%">
   <NavBar />
@@ -74,6 +75,15 @@ export default {
         // The configuration of the editor.
       }
     }
+  },
+  beforeMount() {
+    ClassicEditor
+      .create( document.querySelector( '#editor' ), {
+        toolbar: [ 'imageUpload' ],
+
+        // Configure the endpoint. See the "Configuration" section above.
+
+      } )
   },
   methods: {
     onSubmit(evt) {
