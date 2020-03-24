@@ -21,6 +21,12 @@ if(process.env.NODE_ENV==='production'){
     //const posts = await loadPosts();
     res.sendFile(__dirname+'/public/index.html');
   });
+}else {
+  app.use(express.static( __dirname+"/public"));
+  app.get(/.*/, (req, res) => {
+    //const posts = await loadPosts();
+    res.sendFile(__dirname+'/public/index.html');
+  });
 }
 
 
