@@ -18,7 +18,7 @@ export default {
 <style>
 body{
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1.6rem;
 }
 h1{
@@ -50,8 +50,8 @@ h6{
   line-height: 1.5em;
 }
 p{
-  font-size: 0.9rem;
-  line-height: 1.6rem;
+  font-size: 1.08rem;
+  line-height: 2rem;
 }
 .main-body {
   padding-top: 5%;

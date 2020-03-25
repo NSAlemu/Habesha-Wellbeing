@@ -6,9 +6,8 @@ class PostService {
   static getPost(id) {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.get(url + id)
+        const res = await axios.get(url + id);
         const data = res.data
-        console.log('getting data' + JSON.stringify(data))
 
         resolve(data)
       } catch (err) {
@@ -19,8 +18,8 @@ class PostService {
   static getAllPost() {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.get(url)
-        const data = res.data
+        const res = await axios.get(url);
+        const data = res.data;
         resolve(data.map(post => ({
           ...post,
           createdAt: new Date(post.createdAt)
@@ -36,15 +35,29 @@ class PostService {
     var res = "";
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post(url, newPost)
-        const data = res.data.saved
+        const res = await axios.post(url, newPost);
+        const data = res.data.saved;
         resolve(data)
 
       } catch (err) {
         reject(err)
       }
     })
-    return res
+  }
+
+  static deletePost(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        console.log('PostService data' + url + id);
+
+        const res = await axios.delete(url + id);
+        const data = res.data.saved;
+        resolve(data)
+
+      } catch (err) {
+        reject(err)
+      }
+    })
   }
 }
 

@@ -9,6 +9,8 @@ import AllPosts from '../components/pages/allPosts'
 import AdminCreatePost from '../components/pages/adminCreatePost'
 import AdminLogin from '../components/pages/adminLogin'
 import Admin_Console from '../components/pages/adminConsole'
+import Admin_All_Posts from '../components/pages/adminAllPosts'
+import Admin_Edit from '../components/pages/adminEditPost'
 
 Vue.use(Router);
 const vueRouter = new Router({
@@ -48,6 +50,18 @@ const vueRouter = new Router({
       name: 'Admin Console',
       component: Admin_Console,
       meta: { title: 'Admin Console' }
+    },
+    {
+      path: '/admin_edit/:PostID?',
+      name: 'Edit Post',
+      component: Admin_Edit,
+      meta: { title: 'Edit Post' }
+    },
+    {
+      path: '/admin_all_posts/',
+      name: 'Edit Post',
+      component: Admin_All_Posts,
+      meta: { title: 'All Posts' }
     }
   ]
 });

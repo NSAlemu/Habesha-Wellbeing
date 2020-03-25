@@ -3,7 +3,7 @@
 <div id="app" style="margin-top:100px; width:100%">
   <NavBar />
   <b-container class="mainBody">
-    <h1>Admin Dash</h1>
+    <h1>Admin Console</h1>
     <b-col cols="12" lg="9">
 
       <b-card-group deck>
@@ -34,7 +34,7 @@
             Edit or Delete a Post.
           </b-card-text>
 
-          <b-button href="/#/" variant="primary">Edit Page</b-button>
+          <b-button href="/#/admin_all_posts" variant="primary">Edit Page</b-button>
         </b-card>
       </b-card-group>
     </b-col>
@@ -88,11 +88,7 @@ export default {
     },
     showMsgBoxOne() {
 
-    },
-    postNow: async function() {
-
     }
-
   }
 }
 </script>

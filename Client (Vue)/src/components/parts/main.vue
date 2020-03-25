@@ -23,6 +23,7 @@
     props: {
       postBody: Object
     },
+
     data() {
       return {}
     },
