@@ -48,11 +48,11 @@ export default {
           ]
         },
         {
-          header: 'Ger Involved',
+          header: 'Need Help?',
           subHeaders: [
-            'Donate',
-            'Volunteer',
-            'support'
+            'Hot Line',
+            'Prevention',
+            'Report Anonymously'
           ]
         }
       ]

@@ -49,6 +49,34 @@ h6{
   font-size: 10px;
   line-height: 1.5em;
 }
+.h1{
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.5em;
+}
+.h2{
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.4em;
+}
+.h3{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.3em;
+}
+.h4{
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+.h5{
+  font-size: 14px;
+  line-height: 1.1em;
+}
+.h6{
+  font-size: 10px;
+  line-height: 1.5em;
+}
 p{
   font-size: 1.08rem;
   line-height: 2rem;
