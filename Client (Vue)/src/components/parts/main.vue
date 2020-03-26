@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="12" lg="9">
+  <b-col cols="12" lg="9" style="min-height: 85%">
 
     <div class="blog-post">
       <h1 class="blog-post-title">{{postBody.title}}</h1>

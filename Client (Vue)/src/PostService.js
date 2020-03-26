@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const url = '/api/Posts/'
 
 class PostService {
@@ -15,6 +16,7 @@ class PostService {
       }
     })
   }
+
   static getAllPost() {
     return new Promise(async (resolve, reject) => {
       try {
@@ -51,6 +53,21 @@ class PostService {
         console.log('PostService data' + url + id);
 
         const res = await axios.delete(url + id);
+        const data = res.data.saved;
+        resolve(data)
+
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  static updatePost(id, post) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        console.log('PostService data' + url + id + post);
+
+        const res = await axios.put(url + id, post);
         const data = res.data.saved;
         resolve(data)
 

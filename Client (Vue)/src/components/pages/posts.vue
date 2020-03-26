@@ -1,7 +1,9 @@
 /* eslint-disable */
 <template>
   <div id="app">
-
+    <vue-headful
+      v-bind:title="postBody.title"
+    />
 
     <div class="mainBody">
       <b-container class="Footer-Space">
@@ -44,6 +46,8 @@
     },
     render: function (createElement) {
       return h("div", ["Text in Parent", h(mainBody)]);
+    },
+    methods:{
     },
     async created() {
       try {

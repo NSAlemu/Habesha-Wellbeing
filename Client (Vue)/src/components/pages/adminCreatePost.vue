@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div id="app" style="margin-top:100px; width:100%">
+  <div id="app" >
     <NavBar/>
     <b-container class="mainBody">
       <b-row>
@@ -23,8 +23,8 @@
       </b-row>
 
       <b-col cols="12" lg="8">
-        <b-form v-if="editOptionsSelected == 'editMode'" @submit="onSubmit">
-          <h2>Post</h2>
+        <b-form v-if="editOptionsSelected === 'editMode'" @submit="onSubmit">
+          <h2>Edit Post</h2>
           <hr>
           <b-form-group id="input-group-1" label="Title" label-for="input-1">
             <b-form-input id="input-2" v-model="postBody.title" required
@@ -40,11 +40,16 @@
             </b-form-checkbox>
           </b-form-group>
           <b-form-group id="input-group-3" label="Description" label-for="input-3">
-            <b-form-input id="shortDesc" v-model="postBody.description" required
-                          placeholder="Let readers know what your post is about"></b-form-input>
+            <b-form-textarea
+              id="shortDesc" v-model="postBody.description" required
+              placeholder="Let readers know what your post is about"
+              rows="2"
+              max-rows="4"
+            ></b-form-textarea>
+
           </b-form-group>
           <b-form-group id="input-group-4" label="Content" label-for="input-3">
-            <ckeditor :disabled="editOptionsSelected != 'editMode'" :editor="editor" v-model="tempPost"
+            <ckeditor :disabled="editOptionsSelected !== 'editMode'" :editor="editor" v-model="tempPost"
                       v-on:input="foo" :config="editorConfig"></ckeditor>
           </b-form-group>
 
@@ -54,9 +59,8 @@
         </b-form>
       </b-col>
 
-      <div v-if="editOptionsSelected == 'previewMode'" >
-          <hr>
-          <h2>Preview</h2>
+      <div v-if="editOptionsSelected === 'previewMode'" >
+          <h2>Post Preview</h2>
           <hr>
 
           <mainBody v-bind:postBody="postBody"/>
@@ -87,7 +91,7 @@
     },
     data() {
       return {
-        tempPost: '',
+        tempPost: '<p>Write the post content here. </br> </br></p>',
         postBody: {
           title: '',
           author: '',

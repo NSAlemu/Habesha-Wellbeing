@@ -21,7 +21,7 @@ mongoose.connect(uri, {
     useFindAndModify: false
   })
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log("errpr at posts\n"+err));
+  .catch(err => console.log("error at posts\n"+err));
 
 
 const postSchema = new mongoose.Schema({
@@ -66,6 +66,28 @@ router.post('/', (req, res) => {
   res.send({"saved":"true"});
 });
 
+router.delete('/:postID', (req, res) => {
+  console.log("deleting post");
+  Post.deleteOne({ _id: req.params.postID }, function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({"saved":"true"});
+    }
+  });
+});
+router.put('/:postID', (req, res) => {
+  const body = req.body;
+  Post.updateOne({ _id: req.params.postID }, update(body), function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({"saved":"true"});
+    }
+  });
+});
+
+
 function savePost(Obj) {
   const postItem = new Post({
     _id: shortid.generate(),
@@ -79,27 +101,16 @@ function savePost(Obj) {
   postItem.save();
   return postItem;
 }
-router.delete('/:postID', (req, res) => {
-  console.log("deleting post");
-  Post.deleteOne({ _id: req.params.postID }, function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send({"saved":"true"});
-    }
+function update(Obj) {
+  const postItem = new Post({
+    title: Obj.title,
+    author: Obj.author,
+    post: Obj.post,
+    description: Obj.description,
+    showAuthor: Obj.showAuthor,
+    createdAt: new Date()
   });
-});
-router.delete('/:postID', (req, res) => {
-  console.log("deleting post");
-  Post.replaceOne({ _id: req.params.postID }, function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send({"saved":"true"});
-    }
-  });
-});
-
-
+  return postItem;
+}
 
 module.exports = router;

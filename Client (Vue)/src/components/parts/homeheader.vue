@@ -10,7 +10,7 @@
 
 <script>
 import navbar from './navbar'
-import jumbotron from './jumbotron'
+import jumbotron from '../pages/HomePage/jumbotron'
 
 export default {
 

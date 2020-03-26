@@ -4,17 +4,39 @@
     <NavBar/>
     <div class="mainBody">
       <b-container class="Footer-Space">
+
         <b-row>
           <sideNav/>
           <b-col cols="12" lg="9">
-
+            <b-row align-h="end" class="m-4">
+              <b-button class=""  href="/#/admin_create_post"  variant="primary">+ Create a new Post</b-button>
+            </b-row>
             <b-row v-for="post, i in allPosts">
-              <b-card class="w-100 .p-3" bg-variant="light" text-variant="black" v-bind:title="post.title">
-                <b-card-text>
-                  {{post.description}}
-                </b-card-text>
-                <b-button v-bind:href="'/#/posts/' + post._id" variant="warning">Edit</b-button>
-                <b-button v-bind:id="''+post._id" v-on:click="removePost" variant="danger">Delete</b-button>
+              <b-card no-body class="overflow-hidden w-100 mb-3" bg-variant="light" text-variant="black">
+                <div  onmouseover="this.style.color='red'" onmouseout="this.style.color='black';" >
+                  <b-row no-gutters>
+
+                    <b-col md="2">
+                      <b-card-img src="https://picsum.photos/400/400/?image=20" class="rounded-0"></b-card-img>
+                    </b-col>
+                    <b-col md="10">
+                      <b-card-body v-bind:title="post.title">
+                        <b-card-text  style="color: #63676B; ">
+                        <p class="shortDescription">{{post.description}}</p>
+
+                        </b-card-text>
+                      </b-card-body>
+
+                    </b-col>
+                    <hr  class="w-100 m-0">
+                    <b-row align-h="end" class="w-100">
+
+                      <b-button class="m-1"v-bind:href="'/#/admin_edit/' + post._id" v-bind:originalPost="''+post._id" variant="warning">Edit</b-button>
+                      <b-button class="m-1"v-bind:id="''+post._id" v-on:click="removePost"  variant="danger">Delete</b-button>
+                    </b-row>
+
+                  </b-row>
+                </div>
               </b-card>
             </b-row>
           </b-col>
@@ -46,13 +68,14 @@
     data() {
       return {
         allPosts: '',
+        originalPost:'',
         deleteID:'',
       }
     },
     methods: {
       removePost: function(event) {
         this.deleteID = event.currentTarget.id;
-        this.$bvModal.msgBoxConfirm('Are you sure?')
+        this.$bvModal.msgBoxConfirm('Are you sure you want to delete this post?', {okVariant: 'danger', okTitle: 'DELETE',})
           .then(value => {
             if (value) {
               this.deleteNow();
@@ -99,5 +122,12 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
+  .shortDescription{
+    line-height: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
 </style>

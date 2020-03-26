@@ -3,7 +3,7 @@
 // jshint esversion: 6
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/pages/homePage'
+import Home from '../components/pages/HomePage/HomePage'
 import Posts from '../components/pages/posts'
 import AllPosts from '../components/pages/allPosts'
 import AdminCreatePost from '../components/pages/adminCreatePost'
@@ -31,7 +31,6 @@ const vueRouter = new Router({
       path: '/posts/:PostID?',
       name: 'Posts',
       component: Posts,
-      meta: { title: ':PostID?' }
     },
     {
       path: '/admin_create_post',
@@ -43,7 +42,7 @@ const vueRouter = new Router({
       path: '/admin_login',
       name: 'Admin Login',
       component: AdminLogin,
-      meta: { title: 'Admin Login' }
+      meta: { title: 'Admin Login'}
     },
     {
       path: '/admin_console',
@@ -55,7 +54,7 @@ const vueRouter = new Router({
       path: '/admin_edit/:PostID?',
       name: 'Edit Post',
       component: Admin_Edit,
-      meta: { title: 'Edit Post' }
+      meta: { title: 'Edit Post'  }
     },
     {
       path: '/admin_all_posts/',
@@ -66,8 +65,14 @@ const vueRouter = new Router({
   ]
 });
 const DEFAULT_TITLE = 'Habesha Wellbeing';
+const DEFAULT_ICON = "../assets/logo";
 vueRouter.afterEach((to, from) => {
     document.title = to.meta.title || DEFAULT_TITLE;
+  let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = '../assets/logo';
+  document.getElementsByTagName('head')[0].appendChild(link);
 });
 
 export default vueRouter;

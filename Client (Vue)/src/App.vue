@@ -58,9 +58,12 @@ p{
 }
 .mainBody{
   position: relative;
- min-height: 100vh;
+ min-height: 93vh;
 }
 .Footer-Space{
   padding-bottom: 300px
+}
+.weakColor{
+  color: #44464e
 }
 </style>

@@ -1,7 +1,6 @@
-/* eslint-disable */
 <template>
 <div class="homejumbotron fd-bg">
-  <b-container>
+  <b-container >
     <b-row>
       <b-jumbotron class="jum" text-variant="light">
         <template v-slot:header>We are here to help</template>
@@ -37,12 +36,11 @@ export default {
 <style scoped>
 
 .homejumbotron {
-  background-image: url("../../assets/jumbotron_bg.gif");
+  background-image: url("../../../assets/jumbotron_bg.gif");
 
 
 }
 .jum{
-margin-top: 75px;
 background-color: rgba(0,0,0,0);
 
 

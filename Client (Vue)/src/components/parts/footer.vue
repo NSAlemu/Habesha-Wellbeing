@@ -40,7 +40,7 @@ export default {
           ]
         },
         {
-          header: 'Ger Involved',
+          header: 'Get Involved',
           subHeaders: [
             'Donate',
             'Volunteer',
@@ -72,7 +72,7 @@ h5{
   background-color: #535354;
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 30px;
 }
 .footer-ref{
   color: #E9F0FF;
