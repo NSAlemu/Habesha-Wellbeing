@@ -22,17 +22,17 @@ body{
   line-height: 1.6rem;
 }
 h1{
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   line-height: 1.5em;
 }
 h2{
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   line-height: 1.4em;
 }
 h3{
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 1.3em;
 }
